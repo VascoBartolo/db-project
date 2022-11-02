@@ -1,0 +1,29 @@
+MECD | FCED - Database project
+
+Runner coiso
+Relational model
+
+GROUP X
+Farzam Salimi
+Vasco Bartolomeu
+Rojan Aslani
+____________________________________________________________________________________
+- Event: decided not to make a new class for event, becaue "family-race" sometimes has 15km distance, other times 16km distance. 
+
+
+____________________________________________________________________________________
+
+Runner (id_runner[NN][UK], name [NN], sex, nation, birth_date [NN])
+
+Team (team_name[NN][UK])
+
+Reservation (id_reservation [NN][UK], #id_race -> Race [NN], #id_runner -> Runner [NN], #team_name -> Team, #age_class -> Age_class, bib)
+
+Age_class (age_class[NN][UK])
+
+Event (event_name[NN][UK], distance [NN])
+
+Race (id_race[NN][UK], year, #event_name -> Event)
+
+Result (#id_race -> Race[NN][UK], #id_runner -> Runner, place_in_class, official_time, net_time)
+
