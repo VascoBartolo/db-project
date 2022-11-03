@@ -3,27 +3,31 @@ MECD | FCED - Database project
 Runner coiso
 Relational model
 
-GROUP X
+GROUP 4
 Farzam Salimi
 Vasco Bartolomeu
 Rojan Aslani
 ____________________________________________________________________________________
 - Event: decided not to make a new class for event, becaue "family-race" sometimes has 15km distance, other times 16km distance. 
-
+- bib constrains have to be treated in backend
 
 ____________________________________________________________________________________
+Nation (id [NN][UK], country_alpha2_code, country_name )
 
-Runner (id_runner[NN][UK], name [NN], sex, nation, birth_date [NN])
+Runner (id [NN][UK], name [NN], birth_date [NN], sex, #nation -> Nation)
 
-Team (team_name[NN][UK])
+Team (id [NN][UK], team_name [NN])
 
-Reservation (id_reservation [NN][UK], #id_race -> Race [NN], #id_runner -> Runner [NN], #team_name -> Team, #age_class -> Age_class, bib)
+Event (id [NN][UK], event_name[NN])
 
-Age_class (age_class[NN][UK])
+Age_class (id [NN][UK], age_class[NN])
 
-Event (event_name[NN][UK], distance [NN])
+Race (id [NN][UK], #event_id -> Event [NN], distance [NN], year[NN])
 
-Race (id_race[NN][UK], year, #event_name -> Event)
+Participation (#id_race -> Race [UK][NN], #id_runner -> Runner [UK][NN], #age_class -> Age_class [NN], bib [UK], 
+               #team_name -> Team, place_overall, place_in_class , official_time, net_time){UK: runner_id, race_id}
 
-Result (#id_race -> Race[NN][UK], #id_runner -> Runner, place_in_class, official_time, net_time)
+
+
+
 
