@@ -8,6 +8,12 @@ CREATE TABLE runner (
 );
 
 -- UNIQUENESS OF team, age_class, event names should be verified in backend (python)
+-- UNLESS: 
+--CREATE TABLE test(
+--    id SERIAL UNIQUE,   -- age_class id
+--    name VARCHAR PRIMARY KEY -- age_class  
+--);
+
 CREATE TABLE team (
     id INTEGER PRIMARY KEY,   -- team id
     name VARCHAR NOT NULL     -- team name 
