@@ -1,26 +1,26 @@
 CREATE TABLE runner (
-    id INTEGER PRIMARY KEY,     -- runner id
-    name VARCHAR(64) NOT NULL,      -- name
-    birth_date DATE NOT NULL,   -- birthday FORMAT: 'MM-DD-YYYY'
-	sex VARCHAR (1),            -- gender
-    nation VARCHAR (2),         -- nationality
-    UNIQUE (name, birth_date)   -- person with the same name on the same birthday is not allowed
+    id INTEGER PRIMARY KEY,                    -- runner id
+    name VARCHAR(64) NOT NULL,                 -- name
+    birth_date DATE NOT NULL,                  -- birthday FORMAT: 'MM-DD-YYYY'
+	sex VARCHAR (1) CHECK (sex IN ('M', 'F')), -- gender
+    nation VARCHAR (2),                        -- nationality
+    UNIQUE (name, birth_date)                  -- person with the same name on the same birthday is not allowed
 );
 
 -- UNIQUENESS OF team, age_class, event names should be verified in backend (python)
 CREATE TABLE team (
     id INTEGER PRIMARY KEY,   -- team id
-    name VARCHAR NOT NULL    -- team name 
+    name VARCHAR NOT NULL     -- team name 
 );
 
 CREATE TABLE age_class (
     id INTEGER PRIMARY KEY,   -- age_class id
-    name VARCHAR NOT NULL    -- age_class  
+    name VARCHAR NOT NULL     -- age_class  
 );
 
 CREATE TABLE event (
     id INTEGER PRIMARY KEY,   -- event id
-    name VARCHAR NOT NULL    -- event name 
+    name VARCHAR NOT NULL     -- event name 
 );
 
 CREATE TABLE race (
@@ -33,8 +33,8 @@ CREATE TABLE race (
 CREATE TABLE participation (
     id_runner INTEGER REFERENCES runner,                -- This runner is enrolled
     id_race INTEGER REFERENCES race,                    -- in this race
-    id_age_class INTEGER REFERENCES age_class NOT NULL, -- in this age_class
 	bib INTEGER,                                        -- bib
+    id_age_class INTEGER REFERENCES age_class NOT NULL, -- in this age_class
     id_team INTEGER REFERENCES team,                    -- team if of the runner (if any)
 	place_overall INTEGER,                              -- place over all age classes
 	place_in_class INTEGER,                             -- place in their age_class
