@@ -1,13 +1,14 @@
 from mando import command, main
+import psycopg2
 
 @command
 def race_script():
     conn = psycopg2.connect(
     host="localhost",
-    port="5433",
-    database="newdb",
-    user="postgres",
-    password="1234",
+    port="5432",
+    database="faculade",
+    username="postgres",
+    password="2003",
     options='-c search_path=public')
 
 
@@ -30,7 +31,9 @@ def race_script():
             restart = False
             menu_1 = input("Please type the name of the runner you are searching for: ")
             
-            cursor.execute("SELECT name FROM runner WHERE runner.name==(%s)", (menu_1))
+            result = cursor.execute("SELECT name FROM runner WHERE runner.name==(%s)", (menu_1))
+            print(result)
+            
             restart = True
 
         elif menu_option == "2":
