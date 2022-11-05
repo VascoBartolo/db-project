@@ -54,6 +54,10 @@ df3['team'] = df3['team'].fillna('Individual')
 # Changing time format variable
 df3['birth_date'] = pd.to_datetime(df3['birth_date'])
 
+df3 = df3[df3['age_class'].notna()]
+df3 = df3[df3['net_time'].notna()]
+
+
 print ('Creating sub-tables...')
 #unique runners
 unique_runners = df3.drop_duplicates(subset=['name', 'birth_date'], keep='first')
@@ -134,7 +138,9 @@ del reservations3['event_year']
 #We are converting the dataframe to numpy to iterate faster through the rows to replace the foreign keys to the participation table
 
 # Here we replace the team name with the respective foreign keys
-x = reservation2[0:50].to_numpy()
+#x = reservation2[0:100000].to_numpy()
+
+x = reservation2.to_numpy()
 teams = table_team2.to_numpy()
 team = x[:,0]
 events = unique_events2.to_numpy()
@@ -207,7 +213,7 @@ unique_age_class2 = list(unique_age_class2.itertuples(index=True, name=None))
 unique_events2 = list(unique_events2.itertuples(index=True, name=None))
 unique_races2 = list(unique_races2.itertuples(index=True, name=None))
 x3 = list(x3.itertuples(index=True, name=None))
-print(x3)
+#print(x3)
 
 
 
@@ -216,6 +222,8 @@ print(x3)
 #insert_values = insert_values.set_index()
 #df = pd.DataFrame(data=insert_values)
 #insert_values =  insert_values
+
+
 for record in runners_table2:
     cur.execute(insert_script, record)
 
