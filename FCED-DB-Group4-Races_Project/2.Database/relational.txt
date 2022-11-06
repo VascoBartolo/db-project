@@ -1,0 +1,28 @@
+FEUP | MECD
+FCED - Running Races Database Project
+
+Relational model
+
+GROUP 4
+Farzam Salimi
+Vasco Bartolomeu
+Rojan Aslani
+
+___________________________________________________________________________________
+
+Nation (id [NN][UK], country_alpha2_code, country_name )
+
+Runner (id [NN][UK], name [NN], birth_date [NN], sex, #nation -> Nation)
+
+Team (id [NN][UK], team_name [NN])
+
+Event (id [NN][UK], event_name[NN])
+
+Age_class (id [NN][UK], age_class[NN])
+
+Race (id [NN][UK], #event_id -> Event [NN], distance [NN], year[NN])
+
+Participation (#id_race -> Race [UK][NN], #id_runner -> Runner [UK][NN], #age_class -> Age_class [NN], bib [UK], 
+               #team_name -> Team, place_overall, place_in_class , official_time, net_time){UK: runner_id, race_id}
+
+
