@@ -21,10 +21,10 @@ start = time.time()
 print('Connecting to database and removing all data from tables.')
 
 conn = psycopg2.connect(
-    database="fced_rojan_aslani",              
-    user    ="fced_rojan_aslani",              
-    password="MECD1234",                       
-    host    ="dbm.fe.up.pt",   
+    database="database_name",              
+    user    ="database_user",              
+    password="password",                       
+    host    ="host",   
     port    ="5433",          
     options ='-c search_path=races')
 
